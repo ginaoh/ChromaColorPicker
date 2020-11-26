@@ -252,7 +252,8 @@ public class ChromaColorPicker: UIControl, ChromaControlStylable {
         
         var transform: CGAffineTransform = .identity
         if shouldGrow {
-            let translateY = -handle.bounds.height * (scalar - 1) / 2
+            let translateY = -handle.bounds.height * (scalar - 1) / 3
+//            let translateY = -handle.bounds.height * (scalar - 1) / 2
             transform = CGAffineTransform(scaleX: scalar, y: scalar).translatedBy(x: 0, y: translateY)
         }
         
