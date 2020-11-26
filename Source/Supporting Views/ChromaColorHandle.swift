@@ -93,8 +93,8 @@ public class ChromaColorHandle: UIView, ChromaControlStylable {
         if showsShadow {
             let shadowProps = ShadowProperties(color: UIColor.black.cgColor,
                                                opacity: 0.3,
-                                               offset: CGSize(width: 0, height: bounds.height / 8.0),
-                                               radius: 4.0)
+                                               offset: .zero,
+                                               radius: 20.0)
             applyDropShadow(shadowProps)
         } else {
             removeDropShadow()
