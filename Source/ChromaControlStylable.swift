@@ -19,7 +19,7 @@ internal protocol ChromaControlStylable {
 internal extension ChromaControlStylable where Self: UIView {
     
     func shadowProperties(forHeight height: CGFloat) -> ShadowProperties {
-        let dropShadowHeight = height * 0.01
+        let dropShadowHeight = 2//height * 0.01
         return ShadowProperties(color: UIColor.black.cgColor, opacity: 0.35, offset: CGSize(width: 0, height: dropShadowHeight), radius: 4)
     }
 }

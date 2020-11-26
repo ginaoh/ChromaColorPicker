@@ -51,6 +51,10 @@ public class ChromaColorHandle: UIView, ChromaControlStylable {
         didSet { layoutNow() }
     }
     
+    public var handleSize: CGFloat = 40 {
+        didSet { layoutNow() }
+    }
+    
     // MARK: - Initialization
     
     public convenience init(color: UIColor) {
@@ -98,20 +102,15 @@ public class ChromaColorHandle: UIView, ChromaControlStylable {
     }
     
     internal func makeHandlePath(frame: CGRect) -> CGPath {
-        let path = UIBezierPath(arcCenter: CGPoint(x: 100, y: 100), radius: CGFloat(20), startAngle: CGFloat(0), endAngle: CGFloat(Double.pi * 2), clockwise: true)
-        path.move(to: CGPoint(x: frame.minX + 0.5 * frame.width, y: frame.minY + 1 * frame.height))
         
-//        path.move(to: CGPoint(x: frame.minX + 0.5 * frame.width, y: frame.minY + 1 * frame.height))
-//        path.addCurve(to: CGPoint(x: frame.minX + 1 * frame.width, y: frame.minY + 0.40310 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.83333 * frame.width, y: frame.minY + 0.80216 * frame.height), controlPoint2: CGPoint(x: frame.minX + 1 * frame.width, y: frame.minY + 0.60320 * frame.height))
-//        path.addCurve(to: CGPoint(x: frame.minX + 0.5 * frame.width, y: frame.minY * frame.height), controlPoint1: CGPoint(x: frame.minX + 1 * frame.width, y: frame.minY + 0.18047 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.77614 * frame.width, y: frame.minY * frame.height))
-//        path.addCurve(to: CGPoint(x: frame.minX * frame.width, y: frame.minY + 0.40310 * frame.height), controlPoint1: CGPoint(x: frame.minX + 0.22386 * frame.width, y: frame.minY * frame.height), controlPoint2: CGPoint(x: frame.minX * frame.width, y: frame.minY + 0.18047 * frame.height))
-//        path.addCurve(to: CGPoint(x: frame.minX + 0.50000 * frame.width, y: frame.minY + 1 * frame.height), controlPoint1: CGPoint(x: frame.minX * frame.width, y: frame.minY + 0.60837 * frame.height), controlPoint2: CGPoint(x: frame.minX + 0.16667 * frame.width, y: frame.minY + 0.80733 * frame.height))
-//        path.close()
+        let multiplier: CGFloat = 1.0
+        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: handleSize * multiplier, height: handleSize * multiplier), cornerRadius: (handleSize * multiplier) / 2)//UIBezierPath()
+
         return path.cgPath
     }
     
     internal func layoutHandleShape() {
-        let size = CGSize(width: bounds.width - borderWidth, height: bounds.height - borderWidth)
+        let size = CGSize(width: handleSize - borderWidth, height: handleSize - borderWidth)
         handleShape.path = makeHandlePath(frame: CGRect(origin: .zero, size: size))
         handleShape.frame = CGRect(origin: CGPoint(x: bounds.midX - (size.width / 2), y: bounds.midY - (size.height / 2)), size: size)
         
