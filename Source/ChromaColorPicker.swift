@@ -97,6 +97,17 @@ public class ChromaColorPicker: UIControl, ChromaControlStylable {
         }
     }
     
+    public func updateHandle(_ handle: ChromaColorHandle, color: UIColor, isCurrentHandle isCurrent: Bool = true) {
+        handle.color = color
+        brightnessSlider?.trackColor = color
+     
+        if isCurrent {
+            currentHandle = handle
+        }
+        
+        layoutNow()
+    }
+    
     public func connect(_ slider: ChromaBrightnessSlider) {
         slider.addTarget(self, action: #selector(brightnessSliderDidValueChange(_:)), for: .valueChanged)
         brightnessSlider = slider
