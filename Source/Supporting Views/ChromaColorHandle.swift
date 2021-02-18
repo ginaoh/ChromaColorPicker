@@ -104,7 +104,7 @@ public class ChromaColorHandle: UIView, ChromaControlStylable {
     internal func makeHandlePath(frame: CGRect) -> CGPath {
         
         let multiplier: CGFloat = 1.0
-        let path = UIBezierPath(roundedRect: CGRect(x: 0, y: 0, width: handleSize * multiplier, height: handleSize * multiplier), cornerRadius: (handleSize * multiplier) / 2)//UIBezierPath()
+        let path = UIBezierPath(roundedRect: CGRect(x: 100, y: 100, width: handleSize * multiplier, height: handleSize * multiplier), cornerRadius: (handleSize * multiplier) / 2)//UIBezierPath()
 
         return path.cgPath
     }
